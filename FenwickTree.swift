@@ -1,6 +1,6 @@
 import Foundation
 
-class FenwickTree<T>: CustomDebugStringConvertible {
+class FenwickTree<T> {
     
     private let count   : Int
     private let neutral : T
@@ -21,9 +21,11 @@ class FenwickTree<T>: CustomDebugStringConvertible {
         self.forward = forward
         self.reverse = reverse
         self.data = Array(repeating: neutralElement, count: count)
+        // 1 indexed, hence the + 1
         self.tree = Array(repeating: neutralElement, count: count + 1)
     }
     
+    // 0 indexed
     func update(index: Int, with newValue: T) {
         let oldValue = data[index];
         let delta = reverse(newValue, oldValue)
@@ -35,6 +37,7 @@ class FenwickTree<T>: CustomDebugStringConvertible {
         }
     }
     
+    // 0 indexed
     func accumulated(at index: Int) -> T {
         var sum = neutral
         var treeIndex = index + 1
@@ -45,6 +48,7 @@ class FenwickTree<T>: CustomDebugStringConvertible {
         return sum
     }
     
+    // 0 indexed
     func accumulated(in range: Range<Int>) -> T {
         let low = range.lowerBound, high = range.upperBound - 1
         let cumulatedLow = low == 0 ? neutral : accumulated(at: low - 1)
