@@ -1,2 +1,2 @@
-# fenwick-tree
-An implementation of the Fenwick tree in Swift
+# Fenwick tree
+This is an implementation of the [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree) in Swift
